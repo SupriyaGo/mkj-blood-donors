@@ -13,7 +13,6 @@ import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
@@ -35,7 +34,7 @@ interface Form {
 
 export default function DonorForm() {
 	const { toast } = useToast();
-	const [formData, setFormData] = useState<Form | any>({
+	const [formData, setFormData] = useState<Form>({
 		firstName: "",
 		lastName: "",
 		email: "",
@@ -52,7 +51,7 @@ export default function DonorForm() {
 		bloodGroup: null,
 	});
 
-	const handleInputChange = (e: any) => {
+	const handleInputChange = (e: Object) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
 		setFormErrors({ ...formErrors, [name]: "" });
@@ -63,7 +62,7 @@ export default function DonorForm() {
 		setFormErrors({ ...formErrors, [name]: "" });
 	};
 
-	const handleSubmit = (e: any) => {
+	const handleSubmit = (e: Object) => {
 		e.preventDefault();
 		if (validateForm()) {
 			console.log("Form submitted:", formData);
@@ -75,7 +74,7 @@ export default function DonorForm() {
 	};
 
 	const validateForm = () => {
-		const errors: Form | any = {};
+		const errors: Form = {};
 		const phoneRegex = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
 
 		Object.keys(formData).forEach((key: string) => {

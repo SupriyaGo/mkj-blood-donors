@@ -32,6 +32,7 @@ import { groups } from "@/data/groups";
 import { useToast } from "@/hooks/use-toast";
 
 interface Donor {
+	id: number;
 	name: string;
 	bloodGroup: string;
 	phone: string;
@@ -98,9 +99,12 @@ export default function DonorList() {
 								Search Results:
 							</h3>
 							<div className="block md:hidden">
-								{searchResults.map((donor, index) => {
+								{searchResults.map((donor) => {
 									return (
-										<Card className="p-4 mb-2 border-gray-600 dark:border-gray-200">
+										<Card
+											key={donor.id}
+											className="p-4 mb-2 border-gray-600 dark:border-gray-200"
+										>
 											<CardTitle className="mb-4 text-gray-600 dark:text-gray-200">
 												{donor.name}
 											</CardTitle>
@@ -151,8 +155,8 @@ export default function DonorList() {
 									</TableRow>
 								</TableHeader>
 								<TableBody className="text-gray-600 dark:text-gray-200">
-									{searchResults.map((donor, index) => (
-										<TableRow key={index}>
+									{searchResults.map((donor) => (
+										<TableRow key={donor.id}>
 											<TableCell>{donor.name}</TableCell>
 											<TableCell>{donor.bloodGroup}</TableCell>
 											<TableCell>{donor.phone}</TableCell>
