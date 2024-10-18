@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { Linkedin, Github, Twitter, Heart, HeartIcon } from "lucide-react";
+import { Linkedin, Github, Twitter, HeartIcon } from "lucide-react";
 
 export default function Footer() {
 	return (
