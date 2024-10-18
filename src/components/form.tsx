@@ -51,7 +51,7 @@ export default function DonorForm() {
 		bloodGroup: null,
 	});
 
-	const handleInputChange = (e: Object) => {
+	const handleInputChange = (e: object) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
 		setFormErrors({ ...formErrors, [name]: "" });
@@ -62,7 +62,7 @@ export default function DonorForm() {
 		setFormErrors({ ...formErrors, [name]: "" });
 	};
 
-	const handleSubmit = (e: Object) => {
+	const handleSubmit = (e: object) => {
 		e.preventDefault();
 		if (validateForm()) {
 			console.log("Form submitted:", formData);
