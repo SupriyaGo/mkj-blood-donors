@@ -32,6 +32,23 @@ interface Form {
 	bloodGroup: string;
 }
 
+interface Error {
+	firstName?: string | null;
+	lastName?: string | null;
+	email?: string | null;
+	phone?: string | null;
+	alternatePhone?: string | null;
+	bloodGroup?: string | null;
+}
+
+interface E {
+	target: {
+		name: string;
+		value: string;
+	};
+	preventDefault: (() => void) | undefined;
+}
+
 export default function DonorForm() {
 	const { toast } = useToast();
 	const [formData, setFormData] = useState<Form>({
@@ -42,7 +59,7 @@ export default function DonorForm() {
 		alternatePhone: "",
 		bloodGroup: "",
 	});
-	const [formErrors, setFormErrors] = useState({
+	const [formErrors, setFormErrors] = useState<Error>({
 		firstName: null,
 		lastName: null,
 		email: null,
@@ -51,7 +68,7 @@ export default function DonorForm() {
 		bloodGroup: null,
 	});
 
-	const handleInputChange = (e: object) => {
+	const handleInputChange = (e: E) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
 		setFormErrors({ ...formErrors, [name]: "" });
@@ -62,8 +79,8 @@ export default function DonorForm() {
 		setFormErrors({ ...formErrors, [name]: "" });
 	};
 
-	const handleSubmit = (e: object) => {
-		e.preventDefault();
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault?.();
 		if (validateForm()) {
 			console.log("Form submitted:", formData);
 			toast({
@@ -74,10 +91,10 @@ export default function DonorForm() {
 	};
 
 	const validateForm = () => {
-		const errors: Form = {};
+		const errors: { [key in keyof Form]?: string } = {};
 		const phoneRegex = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
 
-		Object.keys(formData).forEach((key: string) => {
+		(Object.keys(formData) as (keyof Form)[]).forEach((key) => {
 			if (!formData[key]) {
 				errors[key] = "This field is required";
 			} else if (
