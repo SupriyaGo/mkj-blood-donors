@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
 import { Button } from "./ui/button";
+import Image from "next/image";
 
 export default function Header() {
 	const { theme, setTheme } = useTheme();
@@ -16,9 +17,12 @@ export default function Header() {
 	return (
 		<header className="text-center relative p-8 pb-0">
 			<div className="relative items-center mb-8 md:mb-0 md:absolute">
-				<img
+				<Image
 					src="/images/logo2.png"
 					alt="logo"
+					width={80}
+					height={80}
+					quality={100}
 					className="w-[60px] h-[60px] lg:w-[80px] lg:h-[80px] md:w-[60px] md:h-[60px]"
 				/>
 			</div>
@@ -29,9 +33,12 @@ export default function Header() {
 				<p className="text-xl text-gray-600 dark:text-gray-400">
 					Connect with blood donors and save lives
 				</p>
-				<img
-					src={"/images/bloodMan.png"}
-					alt="blood man"
+				<Image
+					src="/images/bloodMan.png"
+					alt="logo"
+					width={200}
+					height={200}
+					quality={100}
 					className="w-[200px] h-[200px] md:w-[180px] md:h-[180px]"
 				/>
 			</div>
