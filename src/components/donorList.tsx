@@ -37,6 +37,7 @@ interface Donor {
 	bloodGroup: string;
 	phone: string;
 	alternatePhone: string;
+	email?: string;
 }
 
 export default function DonorList() {
